@@ -290,3 +290,7 @@
       visibility: hidden;
     }
   }
+
+  .app-sidebar{
+    color:#1976d2;
+  }

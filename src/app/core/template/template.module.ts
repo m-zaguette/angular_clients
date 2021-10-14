@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './footer/footer.component';
+import { ContentComponent } from './content/content.component';
 
 
 @NgModule({
@@ -10,6 +12,8 @@ import { HomeComponent } from './home/home.component';
     NavbarComponent,
     SidebarComponent,
     HomeComponent,
+    FooterComponent,
+    ContentComponent,
   ],
   imports: [
     CommonModule
@@ -18,6 +22,8 @@ import { HomeComponent } from './home/home.component';
     NavbarComponent,
     SidebarComponent,
     HomeComponent,
+    FooterComponent,
+    ContentComponent,
   ]
 })
 export class TemplateModule { }
