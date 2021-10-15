@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <h2 class="mt-4">Clients</h2>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Registry</li>
+    </ol>
+    <div class="container">
+        <form>
+            <div class="row">
+                <div class="col-md-6 col-sm-3">
+                    <div class="form-group">
+                        <label>ID:</label>
+                        <input type="text" class="form-control" [ngModel]="client.id" name="id" disabled>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-3">
+                    <div class="form-group">
+                        <label>Sign In Date:</label>
+                        <input type="text" class="form-control" [ngModel] = "client.signInDate" name="signInDate" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-3">
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" class="form-control" [(ngModel)] = "client.name" name="client.name" maxlength="50" placeholder="Name here">
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-3">
+                    <div class="form-group">
+                        <label>CPF:</label>
+                        <input type="text" [(ngModel)]="client.cpf" name="cpf" maxlength="11" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-success" (click)="saveClient()">
+                        <span>Save &nbsp;</span>
+                        <i class="fas fa-save"></i>
+                    </button>
+                    <!-- <button class="btn btn-success"></button> -->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
