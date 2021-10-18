@@ -4,7 +4,7 @@
         <li class="breadcrumb-item active">Registry</li>
     </ol>
     <div class="container">
-        <form>
+        <form #clientForm = "ngForm" (ngSubmit) = "onSubmit()">
             <div class="row">
                 <div class="col-md-6 col-sm-3">
                     <div class="form-group">
@@ -35,7 +35,7 @@
             </div>
             <div class="row">
                 <div class="col-md-2">
-                    <button type="submit" class="btn btn-success" (click)="saveClient()">
+                    <button type="submit" class="btn btn-success">
                         <span>Save &nbsp;</span>
                         <i class="fas fa-save"></i>
                     </button>
