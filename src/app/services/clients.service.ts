@@ -16,10 +16,11 @@ export class ClientsService {
     return this.http.post<Client> ('http://localhost:8080/api/clients',client);
   }
 
-  getClient(): Client {
-    let client : Client = new Client();
-    client.name = "Marcelo";
-    client.cpf = "01234543210";
-    return client;
+  getClients(): Observable<Client[]> {
+    return this.http.get<Client[]>('http://localhost:8080/api/clients');
+  }
+
+  getClientById(id: number): Observable<Client>{
+    return this.http.get<any>(`http://localhost:8080/api/clients/${id}`);
   }
 }

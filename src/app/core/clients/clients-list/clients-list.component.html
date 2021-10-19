@@ -1,0 +1,44 @@
+<div class="container-fluid">
+    <h2 class="mt-4">Clients</h2>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">List</li>
+    </ol>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn btn-success" routerLink="/clients-form">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>CPF</th>
+                            <th>Sign In Date</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let client of arrayClients">
+                            <td>{{client.id}}</td>
+                            <td>{{client.name}}</td>
+                            <td>{{client.cpf}}</td>
+                            <td>{{client.signInDate}}</td>
+                            <td>
+                                <button class="btn btn-primary" routerLink="/clients-form/{{client.id}}">
+                                    <i class="fas fa-pen-square"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
