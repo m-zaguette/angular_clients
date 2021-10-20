@@ -5,6 +5,16 @@
     </ol>
     <div class="container">
         <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="successMessage != ''">
+                    {{successMessage}}
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="failMessage != ''">
+                    {{ failMessage }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-2">
                 <button class="btn btn-success" routerLink="/clients-form">
                     <i class="fas fa-plus"></i>
@@ -34,6 +44,10 @@
                                 <button class="btn btn-primary" routerLink="/clients-form/{{client.id}}">
                                     <i class="fas fa-pen-square"></i>
                                 </button>
+                                &nbsp;
+                                <button class="btn btn-danger" (click)="prepareDelete(client)" data-toggle="modal" data-target="#modalDelete">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </td>
                         </tr>
                     </tbody>
@@ -41,4 +55,20 @@
             </div>
         </div>
     </div>
+    <div id="modalDelete" class="modal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h4 class="modal-title">Confirmação</h4>
+                </div>       
+                <div class="modal-body" *ngIf="selectedClient.name">
+                    <p>Deseja apagar dados do cliente {{selectedClient.name}}?</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-dismiss="modal">Não</button>
+                    <button class="btn btn-danger" (click)="deleteClient()" data-dismiss="modal">Sim</button>
+                </div>
+            </div>
+        </div>
+      </div>
 </div>

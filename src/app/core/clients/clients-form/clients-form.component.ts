@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ClientsService } from 'src/app/services/clients.service';
 import { Client } from './Models/client';
 
@@ -12,6 +13,7 @@ export class ClientsFormComponent implements OnInit {
   client: Client = new Client();
   success: boolean = false;
   errors: String[] = [];
+  id: number = 0;
 
   constructor( 
     private service: ClientsService,
@@ -20,24 +22,32 @@ export class ClientsFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let params = this.activatedRoute.params;
-    let _values;
-    let id: number = 0;
+    let params: Observable<Params> = this.activatedRoute.params;
     params.subscribe( values => {
-      _values = values;
-      id = values.id;
+      this.id = values.id;
     });
-    if(id!=0){
-      this.service.getClientById(id)
+    if(this.id!=0){
+      this.service.getClientById(this.id)
       .subscribe(
         response => this.client = response,
-        errorResponse => this.client = new Client()
+        errorResponse => {this.client = new Client(); this.id = 0}
       );
     }
   }
   
   onSubmit(): void{
-    this.service.save(this.client).subscribe( response => {
+    if(this.id != 0){
+      this.client.signInDate = '';
+      this.service.update(this.client)
+      .subscribe(response => {
+        this.success = true;
+        this.errors = [];
+      }, errorResponse => {
+        this.success = false;
+        this.errors = ['Erro ao atualizar o cliente'];
+      });
+    }else{
+      this.service.save(this.client).subscribe( response => {
       this.success = true;
       this.errors = [];
       this.client = response;
@@ -45,5 +55,6 @@ export class ClientsFormComponent implements OnInit {
       this.success = false;
       this.errors = errorResponse.error.errors;
     });
+    }
   }
 }
